@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PressedKey: ObservableObject {
+class ObservedKeyInput: ObservableObject {
     let objectWillChange = ObjectWillChangePublisher()
     
     @Published var character = "" {

@@ -17,9 +17,7 @@ class MainWindow: NSWindow {
     }
     
     override func keyUp(with event: NSEvent) {
-        // print(event.characters ?? "")
-        let c = event.characters ?? ""
-        self.cv.receiveKey(c)
+        self.cv.inputEvent(event)
     }
     
     override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {

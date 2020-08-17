@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		878F9A1324E96407005F515D /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F9A1224E96407005F515D /* VisualEffectView.swift */; };
-		878F9A1924E9BE70005F515D /* PressedKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F9A1824E9BE70005F515D /* PressedKey.swift */; };
+		878F9A1924E9BE70005F515D /* ObservedKeyInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F9A1824E9BE70005F515D /* ObservedKeyInput.swift */; };
 		878F9A1B24EA3730005F515D /* ObservedOpacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F9A1A24EA3730005F515D /* ObservedOpacity.swift */; };
 		879968F124E946BD00A107FD /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879968F024E946BD00A107FD /* MainWindow.swift */; };
 		879968F324E947DB00A107FD /* MainPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879968F224E947DB00A107FD /* MainPopover.swift */; };
@@ -46,7 +46,7 @@
 
 /* Begin PBXFileReference section */
 		878F9A1224E96407005F515D /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
-		878F9A1824E9BE70005F515D /* PressedKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressedKey.swift; sourceTree = "<group>"; };
+		878F9A1824E9BE70005F515D /* ObservedKeyInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedKeyInput.swift; sourceTree = "<group>"; };
 		878F9A1A24EA3730005F515D /* ObservedOpacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedOpacity.swift; sourceTree = "<group>"; };
 		879968F024E946BD00A107FD /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
 		879968F224E947DB00A107FD /* MainPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopover.swift; sourceTree = "<group>"; };
@@ -77,13 +77,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		879968E924E9422700A107FD /* Helpers */ = {
+		878F9A1C24EA50C8005F515D /* Windows */ = {
 			isa = PBXGroup;
 			children = (
 				879968F024E946BD00A107FD /* MainWindow.swift */,
 				879968F224E947DB00A107FD /* MainPopover.swift */,
+			);
+			path = Windows;
+			sourceTree = "<group>";
+		};
+		879968E924E9422700A107FD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
 				878F9A1224E96407005F515D /* VisualEffectView.swift */,
-				878F9A1824E9BE70005F515D /* PressedKey.swift */,
+				878F9A1824E9BE70005F515D /* ObservedKeyInput.swift */,
 				878F9A1A24EA3730005F515D /* ObservedOpacity.swift */,
 			);
 			path = Helpers;
@@ -116,6 +123,7 @@
 				87ABC3CC24E7F8040075B7D3 /* Info.plist */,
 				87ABC3D924E7F92D0075B7D3 /* InfoPlist.strings */,
 				87ABC3CD24E7F8040075B7D3 /* RarelyCalculator.entitlements */,
+				878F9A1C24EA50C8005F515D /* Windows */,
 				879968E924E9422700A107FD /* Helpers */,
 				87ABC3DC24E7F9E30075B7D3 /* Views */,
 				87ABC3C624E7F8040075B7D3 /* Preview Content */,
@@ -227,7 +235,7 @@
 				87ABC3C324E7F8030075B7D3 /* ContentView.swift in Sources */,
 				878F9A1324E96407005F515D /* VisualEffectView.swift in Sources */,
 				878F9A1B24EA3730005F515D /* ObservedOpacity.swift in Sources */,
-				878F9A1924E9BE70005F515D /* PressedKey.swift in Sources */,
+				878F9A1924E9BE70005F515D /* ObservedKeyInput.swift in Sources */,
 				87ABC3C124E7F8030075B7D3 /* AppDelegate.swift in Sources */,
 				879E33AB24E82A1900525456 /* ButtonView.swift in Sources */,
 			);

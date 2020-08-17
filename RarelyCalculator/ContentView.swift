@@ -6,12 +6,52 @@
 //
 
 import SwiftUI
+import Carbon.HIToolbox
 
 struct ContentView: View {
-    @ObservedObject var pressedKey = PressedKey()
+    @ObservedObject var pressedKey = ObservedKeyInput()
     
-    func receiveKey(_ character: String) {
-        print(character)
+    func inputEvent(_ event: NSEvent) {
+        let code = event.keyCode
+        let flag = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
+        
+        var character = event.characters ?? ""
+        
+        switch flag {
+        case [.option] where event.keyCode == kVK_ANSI_Minus,
+             [.option, .numericPad] where event.keyCode == kVK_ANSI_KeypadMinus:
+            character = "􀅺"
+        case [.shift] where code == kVK_ANSI_Equal:
+            character = "􀅼"
+        default:
+            break
+        }
+        
+        switch code {
+        case UInt16(kVK_Escape):
+            character = "AC"
+        case UInt16(kVK_ANSI_KeypadEnter), UInt16(kVK_Return):
+            character = "􀆀"
+        default:
+            break
+        }
+        
+        switch character {
+        case "+":
+            character = "􀅼"
+        case "-":
+            character = "􀅽"
+        case "*":
+            character = "􀅾"
+        case "/":
+            character = "􀅿"
+        case "\n":
+            character = "􀆀"
+        default:
+            break
+        }
+        
+        print(event.keyCode, character)
         self.pressedKey.character = character
     }
     
@@ -77,7 +117,7 @@ struct ContentView: View {
                     }
                 }
                 
-                ButtonView(label: "-", pressedKey: self.pressedKey, bgColor: Color(red: 1.0, green: 0.6, blue: 0.0), fgColor: .white) {
+                ButtonView(label: "􀅽", pressedKey: self.pressedKey, bgColor: Color(red: 1.0, green: 0.6, blue: 0.0), fgColor: .white) {
                     print("click 􀅽")
                 }
             }
@@ -95,7 +135,7 @@ struct ContentView: View {
             }
             
             HStack {
-                ButtonView(label: "0", pressedKey: self.pressedKey, width: 160) {
+                ButtonView(label: "0", pressedKey: self.pressedKey) {
                     print("click 0")
                 }
                 

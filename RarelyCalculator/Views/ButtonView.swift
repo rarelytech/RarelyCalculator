@@ -51,9 +51,8 @@ struct ButtonView: View {
     var bgColor: Color = Color(red: 0.87, green: 0.87, blue: 0.91)
     var fgColor: Color = Color(red: 0, green: 0, blue: 0)
     var width: CGFloat = 76
-    var publisher: AnyPublisher<Void, Never>?
     
-    @ObservedObject var pressedKey: PressedKey
+    @ObservedObject var pressedKey: ObservedKeyInput
     @ObservedObject private var observedOpacity: ObservedOpacity = ObservedOpacity()
     
     var body: some View {
@@ -66,7 +65,7 @@ struct ButtonView: View {
             Text(self.label)
                 .font(.system(size: 21))
                 .fontWeight(.medium)
-                .frame(width: self.width, height: 48, alignment: .center)
+                .frame(width: self.label == "0" ? 160 : self.width, height: 48, alignment: .center)
                 .foregroundColor(self.fgColor)
                 .background(self.bgColor)
                 .cornerRadius(20, antialiased: true)
@@ -81,22 +80,22 @@ struct ButtonView: View {
         )
     }
     
-    init(label: String, pressedKey: PressedKey, action: @escaping () -> Void) {
+    init(label: String, pressedKey: ObservedKeyInput, action: @escaping () -> Void) {
         self.label = label
         self.action = action
         self.pressedKey = pressedKey
         self.createPublisher()
     }
     
-    init(label: String, pressedKey: PressedKey, width: CGFloat, action: @escaping () -> Void) {
-        self.label = label
-        self.action = action
-        self.width = width
-        self.pressedKey = pressedKey
-        self.createPublisher()
-    }
+//    init(label: String, pressedKey: ObservedKeyInput, width: CGFloat, action: @escaping () -> Void) {
+//        self.label = label
+//        self.action = action
+//        self.width = width
+//        self.pressedKey = pressedKey
+//        self.createPublisher()
+//    }
     
-    init(label: String, pressedKey: PressedKey, bgColor: Color, fgColor: Color, action: @escaping () -> Void) {
+    init(label: String, pressedKey: ObservedKeyInput, bgColor: Color, fgColor: Color, action: @escaping () -> Void) {
         self.label = label
         self.action = action
         self.bgColor = bgColor
