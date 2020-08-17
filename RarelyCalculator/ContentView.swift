@@ -9,7 +9,9 @@ import SwiftUI
 import Carbon.HIToolbox
 
 struct ContentView: View {
+    
     @ObservedObject var pressedKey = ObservedKeyInput()
+    @ObservedObject var result: ObservedResult = ObservedResult()
     
     func inputEvent(_ event: NSEvent) {
         let code = event.keyCode
@@ -55,6 +57,16 @@ struct ContentView: View {
         self.pressedKey.character = character
     }
     
+    func handleInput(_ key: String) {
+        // self.result.current += key
+        print("string ", key)
+    }
+    
+    func handleInput(_ key: Int) {
+        // self.result.current += String(key)
+        print("int ", key)
+    }
+    
     var body: some View {
         let width:CGFloat = 344
         let height:CGFloat = 374
@@ -64,8 +76,8 @@ struct ContentView: View {
         // })
         
         VStack (alignment: .center, spacing: 8) {
-            // 绘制结果框
-            Text("1400 ×")
+            // 暂存框
+            Text("result.last")
                 .fontWeight(.ultraLight)
                 .frame(width: width - 44, height: 20, alignment: .trailing)
                 .font(.system(size: 17))
@@ -73,7 +85,8 @@ struct ContentView: View {
                 .padding(EdgeInsets(top: 10, leading: 18, bottom: 0, trailing: 18))
                 .opacity(0.5)
             
-            Text("0")
+            // 当前框 / 结果框
+            Text(result.current != "" ? result.current : "0")
                 .fontWeight(.light)
                 .frame(width: width - 44, height: 44, alignment: .trailing)
                 .font(.system(size: 48))
@@ -101,7 +114,8 @@ struct ContentView: View {
             HStack {
                 ForEach (7..<10) {n in
                     ButtonView(label: String(n), pressedKey: self.pressedKey) {
-                        print("click \(n)")
+                        // print("click \(n)")
+                        handleInput(n)
                     }
                 }
                 
@@ -113,7 +127,8 @@ struct ContentView: View {
             HStack {
                 ForEach (4..<7) {n in
                     ButtonView(label: String(n), pressedKey: self.pressedKey) {
-                        print("click \(n)")
+                        // print("click \(n)")
+                        handleInput(n)
                     }
                 }
                 
@@ -125,7 +140,8 @@ struct ContentView: View {
             HStack {
                 ForEach (1..<4) {n in
                     ButtonView(label: String(n), pressedKey: self.pressedKey) {
-                        print("click \(n)")
+                        // print("click \(n)")
+                        handleInput(n)
                     }
                 }
                 
@@ -136,11 +152,13 @@ struct ContentView: View {
             
             HStack {
                 ButtonView(label: "0", pressedKey: self.pressedKey) {
-                    print("click 0")
+                    // print("click 0")
+                    handleInput(0)
                 }
                 
                 ButtonView(label: ".", pressedKey: self.pressedKey) {
-                    print("click .")
+                    // print("click .")
+                    handleInput(".")
                 }
                 
                 ButtonView(label: "􀆀", pressedKey: self.pressedKey, bgColor: Color(red: 1.0, green: 0.6, blue: 0.0), fgColor: .white) {

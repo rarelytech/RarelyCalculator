@@ -74,7 +74,7 @@ struct ButtonView: View {
         .modifier(
             ReversingOpacity(to: self.observedOpacity.value) {
                 self.observedOpacity.value = 1
-                print(self.label, "end", self.observedOpacity.value)
+                // print(self.label, "end", self.observedOpacity.value)
             }
             .animation(.easeIn(duration: 0.05))
         )
@@ -87,14 +87,6 @@ struct ButtonView: View {
         self.createPublisher()
     }
     
-//    init(label: String, pressedKey: ObservedKeyInput, width: CGFloat, action: @escaping () -> Void) {
-//        self.label = label
-//        self.action = action
-//        self.width = width
-//        self.pressedKey = pressedKey
-//        self.createPublisher()
-//    }
-    
     init(label: String, pressedKey: ObservedKeyInput, bgColor: Color, fgColor: Color, action: @escaping () -> Void) {
         self.label = label
         self.action = action
@@ -106,9 +98,9 @@ struct ButtonView: View {
     
     func createPublisher() {
         if self.pressedKey.character == self.label {
-            self.action()
+            // self.action()
             self.observedOpacity.value = 0.75
-            print(self.label, "start", self.observedOpacity.value)
+            // print(self.label, "start", self.observedOpacity.value)
         }
     }
 }
