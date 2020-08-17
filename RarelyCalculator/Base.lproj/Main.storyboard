@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14814" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14814"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17147"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,9 +674,29 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="RarelyCalculator" customModuleProvider="target">
+                    <connections>
+                        <outlet property="hideWhenDeactiveMenu" destination="jgo-ra-20l" id="G9t-Ji-YfN"/>
+                        <outlet property="statusMenu" destination="K6v-Dz-YgB" id="uXl-1L-hbt"/>
+                    </connections>
+                </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <menu id="K6v-Dz-YgB">
+                    <items>
+                        <menuItem title="失去焦点隐藏" state="on" identifier="hideWhenDeactive" id="jgo-ra-20l">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="hideWhenDeactiveClick:" target="Voe-Tx-rLC" id="iPP-JT-URS"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="退出" keyEquivalent="q" id="KkZ-1n-WJB">
+                            <connections>
+                                <action selector="exitClick:" target="Voe-Tx-rLC" id="xI2-cN-hA8"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
