@@ -11,9 +11,17 @@ import Carbon.HIToolbox
 struct ContentView: View {
     
     @ObservedObject var pressedKey = ObservedKeyInput()
-    @ObservedObject var result: ObservedResult = ObservedResult()
-    
+    @ObservedObject var observedInput: ObservedInput = ObservedInput()
+        
     func inputEvent(_ event: NSEvent) {
+        let characters: [String: Bool] = [
+            "AC": false, "􀅺": false, "􀘾": false, "􀅿": false,
+            "7": true, "8": true, "9": true, "􀅾": false,
+            "4": true, "5": true, "6": true, "􀅽": false,
+            "1": true, "2": true, "3": true, "􀅼": false,
+            "0": true, ".": true, "􀆀": false
+        ]
+        
         let code = event.keyCode
         let flag = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
         
@@ -23,6 +31,8 @@ struct ContentView: View {
         case [.option] where event.keyCode == kVK_ANSI_Minus,
              [.option, .numericPad] where event.keyCode == kVK_ANSI_KeypadMinus:
             character = "􀅺"
+            self.handleMinus()
+            return
         case [.shift] where code == kVK_ANSI_Equal:
             character = "􀅼"
         default:
@@ -38,33 +48,84 @@ struct ContentView: View {
             break
         }
         
+        var symbol = ""
         switch character {
         case "+":
+            symbol = character
             character = "􀅼"
         case "-":
+            symbol = character
             character = "􀅽"
         case "*":
+            symbol = character
             character = "􀅾"
         case "/":
+            symbol = character
             character = "􀅿"
         case "\n":
+            symbol = character
             character = "􀆀"
         default:
             break
         }
         
-        print(event.keyCode, character)
+        guard let isInputNumber = characters[character] else { return }
+        
         self.pressedKey.character = character
+        
+        if isInputNumber {
+            self.handleInput(character)
+        } else if symbol != "" {
+            self.handleInput(symbol: symbol)
+        } else if character == "􀆀" {
+            self.handleEqual()
+        } else if character == "AC" {
+            self.handleClear()
+        }
     }
     
     func handleInput(_ key: String) {
-        // self.result.current += key
-        print("string ", key)
+        if key == "." {
+            if self.observedInput.entry.contains(".") {
+                return
+            }
+        }
+        self.observedInput.entry += key
     }
     
     func handleInput(_ key: Int) {
-        // self.result.current += String(key)
-        print("int ", key)
+        self.handleInput(String(key))
+    }
+    
+    func handleInput(symbol: String) {
+        self.observedInput.store(symbol: symbol)
+    }
+    
+    func handleEqual() {
+        self.observedInput.equal()
+    }
+    
+    func handleClear() {
+        self.observedInput.clear()
+    }
+    
+    func handleMinus() {
+        self.observedInput.minus()
+    }
+    
+    func handlePercentage() {
+        self.observedInput.percentage()
+    }
+    
+    // 算式
+    var formula: String {
+        get {
+            var text = ""
+            self.observedInput.storage.forEach { accumlator in
+                text += " " + accumlator.value
+            }
+            return text
+        }
     }
     
     var body: some View {
@@ -77,92 +138,91 @@ struct ContentView: View {
         
         VStack (alignment: .center, spacing: 8) {
             // 暂存框
-            Text("result.last")
+            Text(self.formula)
                 .fontWeight(.ultraLight)
                 .frame(width: width - 44, height: 20, alignment: .trailing)
                 .font(.system(size: 17))
                 .foregroundColor(.white)
                 .padding(EdgeInsets(top: 10, leading: 18, bottom: 0, trailing: 18))
                 .opacity(0.5)
+                .minimumScaleFactor(0.001)
+                .lineLimit(1)
             
             // 当前框 / 结果框
-            Text(result.current != "" ? result.current : "0")
+            Text(self.observedInput.entryText())
                 .fontWeight(.light)
                 .frame(width: width - 44, height: 44, alignment: .trailing)
                 .font(.system(size: 48))
                 .foregroundColor(.white)
                 .padding(EdgeInsets(top: 0, leading: 18, bottom: 0, trailing: 18))
-                        
+                .minimumScaleFactor(0.001)
+                .lineLimit(1)
+            
             HStack {
-                ButtonView(label: "AC", pressedKey: self.pressedKey) {
-                    print("click AC")
+                ButtonView(label: self.observedInput.clearText(), pressedKey: self.pressedKey) {
+                    self.handleClear()
                 }
                 
                 ButtonView(label: "􀅺", pressedKey: self.pressedKey) {
-                    print("click 􀅺")
+                    self.handleMinus()
                 }
                 
                 ButtonView(label: "􀘾", pressedKey: self.pressedKey) {
-                    print("click 􀘾")
+                    self.handlePercentage()
                 }
                 
                 ButtonView(label: "􀅿", pressedKey: self.pressedKey, bgColor: Color(red: 1.0, green: 0.6, blue: 0.0), fgColor: .white) {
-                    print("click 􀅿")
+                    self.handleInput(symbol: "/")
                 }
             }
             
             HStack {
                 ForEach (7..<10) {n in
                     ButtonView(label: String(n), pressedKey: self.pressedKey) {
-                        // print("click \(n)")
                         handleInput(n)
                     }
                 }
                 
                 ButtonView(label: "􀅾", pressedKey: self.pressedKey, bgColor: Color(red: 1.0, green: 0.6, blue: 0.0), fgColor: .white) {
-                    print("click 􀅾")
+                    self.handleInput(symbol: "*")
                 }
             }
             
             HStack {
                 ForEach (4..<7) {n in
                     ButtonView(label: String(n), pressedKey: self.pressedKey) {
-                        // print("click \(n)")
                         handleInput(n)
                     }
                 }
                 
                 ButtonView(label: "􀅽", pressedKey: self.pressedKey, bgColor: Color(red: 1.0, green: 0.6, blue: 0.0), fgColor: .white) {
-                    print("click 􀅽")
+                    self.handleInput(symbol: "-")
                 }
             }
             
             HStack {
                 ForEach (1..<4) {n in
                     ButtonView(label: String(n), pressedKey: self.pressedKey) {
-                        // print("click \(n)")
                         handleInput(n)
                     }
                 }
                 
                 ButtonView(label: "􀅼", pressedKey: self.pressedKey, bgColor: Color(red: 1.0, green: 0.6, blue: 0.0), fgColor: .white) {
-                    print("click 􀅼")
+                    self.handleInput(symbol: "+")
                 }
             }
             
             HStack {
                 ButtonView(label: "0", pressedKey: self.pressedKey) {
-                    // print("click 0")
                     handleInput(0)
                 }
                 
                 ButtonView(label: ".", pressedKey: self.pressedKey) {
-                    // print("click .")
                     handleInput(".")
                 }
                 
                 ButtonView(label: "􀆀", pressedKey: self.pressedKey, bgColor: Color(red: 1.0, green: 0.6, blue: 0.0), fgColor: .white) {
-                    print("click 􀆀")
+                    self.handleEqual()
                 }
             }
         }

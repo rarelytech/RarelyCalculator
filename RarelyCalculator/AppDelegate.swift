@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var popover: MainPopover!
     var isHideWhenDeactive: Bool = true
     
-    // Create status menu
+    // 创建菜单
     let statusBarItem = NSStatusBar.system.statusItem(withLength: CGFloat(NSStatusItem.variableLength))
     
     @IBOutlet weak var statusMenu: NSMenu!
@@ -24,8 +24,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         statusBarItem.menu = nil
         statusMenu.delegate = self
-        // Create window
+        // 创建window
         asWindow()
+        
+        
+//        let a = BDouble("1")
+//        let b = BDouble("100")
+//        let c = a! / b!
+//        BDouble.precision = a?.denominator.decimalRepresentation.count ?? 1
+//        print(a?.description, b?.description, c.description)
         
         if let button = self.statusBarItem.button {
             button.image = NSImage(named: "StatusIcon")
@@ -63,7 +70,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func toggleWindow(_ sender: NSStatusBarButton) {
-        //        print("sender", sender.frame.origin)
         self.window.toggleVisible(sender)
     }
     
@@ -78,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
-
+    
 }
 
 extension AppDelegate: NSMenuDelegate {

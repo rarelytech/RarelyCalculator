@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  RarelyCalculator
+
+  Created by liasica on 2020/08/18.
+  
+*/
+
+"Denominator can't be zero" = "分母不能为零";
+"Not number" = "不是数字";
+"Calculation error" = "计算错误";
+"Error" = "错误";

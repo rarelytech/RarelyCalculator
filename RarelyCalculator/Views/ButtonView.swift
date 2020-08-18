@@ -59,11 +59,12 @@ struct ButtonView: View {
         
         Button(action: {
             
+            self.pressedKey.isKeyboardInput = false
             self.action()
             
         }, label: {
             Text(self.label)
-                .font(.system(size: 21))
+                .font(.custom("SF-Compact-Text", size: 21))
                 .fontWeight(.medium)
                 .frame(width: self.label == "0" ? 160 : self.width, height: 48, alignment: .center)
                 .foregroundColor(self.fgColor)
@@ -97,7 +98,7 @@ struct ButtonView: View {
     }
     
     func createPublisher() {
-        if self.pressedKey.character == self.label {
+        if self.pressedKey.character == self.label && self.pressedKey.isKeyboardInput {
             // self.action()
             self.observedOpacity.value = 0.75
             // print(self.label, "start", self.observedOpacity.value)

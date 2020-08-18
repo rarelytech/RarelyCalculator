@@ -10,8 +10,11 @@ import Foundation
 class ObservedKeyInput: ObservableObject {
     let objectWillChange = ObjectWillChangePublisher()
     
+    @Published var isKeyboardInput = false
+    
     @Published var character = "" {
         willSet {
+            self.isKeyboardInput = true
             objectWillChange.send()
         }
     }
