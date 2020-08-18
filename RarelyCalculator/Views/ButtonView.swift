@@ -64,7 +64,7 @@ struct ButtonView: View {
             
         }, label: {
             Text(self.label)
-                .font(.custom("SF-Compact-Text", size: 21))
+                .font(.custom("sfs", size: 21))
                 .fontWeight(.medium)
                 .frame(width: self.label == "0" ? 160 : self.width, height: 48, alignment: .center)
                 .foregroundColor(self.fgColor)
