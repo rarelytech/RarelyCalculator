@@ -27,13 +27,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // 创建window
         asWindow()
         
-        
-//        let a = BDouble("1")
-//        let b = BDouble("100")
-//        let c = a! / b!
-//        BDouble.precision = a?.denominator.decimalRepresentation.count ?? 1
-//        print(a?.description, b?.description, c.description)
-        
         if let button = self.statusBarItem.button {
             button.image = NSImage(named: "StatusIcon")
             button.action = #selector(statusClick(_:))

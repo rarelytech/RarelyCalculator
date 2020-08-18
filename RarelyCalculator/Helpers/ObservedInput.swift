@@ -15,12 +15,12 @@ struct FormulaError: LocalizedError, Equatable {
     }
     
     var errorDescription: String? {
-           return description
-       }
+        return description
+    }
     
     public static func ==(lhs: FormulaError, rhs: FormulaError) -> Bool {
-           return lhs.description == rhs.description
-       }
+        return lhs.description == rhs.description
+    }
 }
 
 extension FormulaError {
@@ -78,9 +78,7 @@ class ObservedInput: ObservableObject {
     // 当前输入
     @Published var entry: String = "" {
         willSet {
-            if newValue != "" {
-                self.result = ""
-            }
+            self.result = ""
             objectWillChange.send()
         }
     }
@@ -107,22 +105,34 @@ class ObservedInput: ObservableObject {
     // 暂存运算符
     func store(symbol: String) {
         let entry = self.entry
+        let result = self.result
         
         if entry != "" {
             // 将输入的数字进行暂存
             storage.append(Accumulator(entry, .number))
-            // 暂存后清除输入数据
-            self.entry = ""
-        } else if let last = storage.last {
-            if last.dataType == .symbol {
-                storage.removeLast()
-            }
-        } else {
-            self.result = FormulaError.notNumber.errorDescription!
+            self.doStore(symbol)
             return
         }
         
+        if let last = self.storage.last, last.dataType == .symbol {
+            storage.removeLast()
+            self.doStore(symbol)
+            return
+        }
+        
+        if let bd = BDouble(result) {
+            storage.append(Accumulator(bd.description, .number))
+            self.doStore(symbol)
+            return
+        }
+        
+        self.result = FormulaError.notNumber.errorDescription!
+    }
+    
+    func doStore(_ symbol: String) {
         self.storage.append(Accumulator(symbol == "/" ? "÷" : (symbol == "*" ? "×" : symbol), .symbol))
+        // 暂存后清除输入数据
+        self.entry = ""
     }
     
     func minus() {
@@ -262,8 +272,8 @@ class ObservedInput: ObservableObject {
             result = NSLocalizedString("Calculation error", comment: "")
         }
         
+        self.entry = ""
         self.storage = []
         self.result = result!
-        self.entry = ""
     }
 }
