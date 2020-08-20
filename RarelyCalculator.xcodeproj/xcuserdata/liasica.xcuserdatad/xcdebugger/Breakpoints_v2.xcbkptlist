@@ -14,9 +14,9 @@
             filePath = "RarelyCalculator/Helpers/ObservedInput.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "doDeformEntry(_:)"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "clear()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -30,9 +30,9 @@
             filePath = "RarelyCalculator/Helpers/ObservedInput.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
-            landmarkName = "clearAll()"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "doMath(_:_:op:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -46,9 +46,9 @@
             filePath = "RarelyCalculator/Helpers/ObservedInput.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
-            landmarkName = "doMath(_:_:op:)"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "doEqual()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -62,9 +62,41 @@
             filePath = "RarelyCalculator/Helpers/ObservedInput.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
-            landmarkName = "doMath(_:_:op:)"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "doEqual()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9202D48C-3749-4F09-84E9-4A91262A77C0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RarelyCalculator/Helpers/ObservedInput.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "doEqual()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CEABA375-AA07-472A-80FC-C0E19510F0DD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RarelyCalculator/Helpers/ObservedInput.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
+            landmarkName = "doEqual()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -7,6 +7,7 @@
 
 import Cocoa
 import SwiftUI
+import Regex
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {

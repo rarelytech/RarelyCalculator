@@ -104,8 +104,12 @@ class ObservedInput: ObservableObject {
     
     // 暂存运算符
     func store(symbol: String) {
-        let entry = self.entry
+        var entry = self.entry
         let result = self.result
+        
+        if entry.starts(with: ".") {
+            entry = "0" + entry
+        }
         
         if entry != "" {
             // 将输入的数字进行暂存
@@ -214,8 +218,8 @@ class ObservedInput: ObservableObject {
                     if n < storage.count - 1 {
                         let symbol = storage[n + 1]
                         if symbol.value == "+" || symbol.value == "-" {
-                            let r = try self.doMath(a!, b!, op: symbol.value)
-                            print(n, "->", "a =", a!.description, symbol.value, b!.description, "=", r.description)
+                            let r = try self.doMath(a!, b!, op: mathOp!)
+                            print(n, "->", "a =", a!.description, mathOp!, b!.description, "=", r.description)
                             a = r
                             mathOp = nil
                             b = nil

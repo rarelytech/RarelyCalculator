@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,7 @@
 		87C5507924EBFF0C0059228E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87C5507B24EBFF0C0059228E /* Localizable.strings */; };
 		87C5507F24EC00600059228E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87C5508124EC00600059228E /* InfoPlist.strings */; };
 		87C5508724EC0F0F0059228E /* sfs.ttf in Copy Files */ = {isa = PBXBuildFile; fileRef = 87C5508524EC0EC20059228E /* sfs.ttf */; };
+		87FCEB2824EEA1A700C0A0C4 /* Regex in Frameworks */ = {isa = PBXBuildFile; productRef = 87FCEB2724EEA1A700C0A0C4 /* Regex */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -93,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87FCEB2824EEA1A700C0A0C4 /* Regex in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +213,7 @@
 			);
 			name = RarelyCalculator;
 			packageProductDependencies = (
+				87FCEB2724EEA1A700C0A0C4 /* Regex */,
 			);
 			productName = RarelyCalculator;
 			productReference = 87ABC3BD24E7F8030075B7D3 /* RarelyCalculator.app */;
@@ -241,6 +244,7 @@
 			);
 			mainGroup = 87ABC3B424E7F8030075B7D3;
 			packageReferences = (
+				87FCEB2624EEA1A700C0A0C4 /* XCRemoteSwiftPackageReference "Regex" */,
 			);
 			productRefGroup = 87ABC3BE24E7F8030075B7D3 /* Products */;
 			projectDirPath = "";
@@ -503,6 +507,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		87FCEB2624EEA1A700C0A0C4 /* XCRemoteSwiftPackageReference "Regex" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sharplet/Regex.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		87FCEB2724EEA1A700C0A0C4 /* Regex */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 87FCEB2624EEA1A700C0A0C4 /* XCRemoteSwiftPackageReference "Regex" */;
+			productName = Regex;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 87ABC3B524E7F8030075B7D3 /* Project object */;
 }
